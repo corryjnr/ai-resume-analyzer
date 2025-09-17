@@ -7,6 +7,11 @@ import {convertPdfToImage} from "~/lib/pdf2img";
 import {prepareInstructions} from "../../constants";
 import {generateUuid} from "~/lib/utils";
 
+export const meta = () => ([
+    {title: 'Resumind | Review'},
+    {name: 'description', content: 'Detailed overview of your resume.'},
+])
+
 const Upload = () => {
     const {auth, isLoading, fs, ai, kv} = usePuterStore();
     const navigate = useNavigate();
@@ -65,6 +70,7 @@ const Upload = () => {
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
         setStatusText('Analysis complete, redirecting...');
         console.log(data);
+        navigate(`/resume/${uuid}`);
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

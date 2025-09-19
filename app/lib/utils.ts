@@ -1,3 +1,10 @@
+import {type ClassValue, clsx} from "clsx";
+import {twMerge} from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs))
+}
+
 /**
  * Convert a size in bytes to a human-readable string (KB, MB, GB).
  * - Uses 1024 as the base.
